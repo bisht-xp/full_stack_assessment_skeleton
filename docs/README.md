@@ -1,3 +1,7 @@
+# Demo
+https://github.com/user-attachments/assets/bf6a3822-96f7-4db3-982b-d3bbdcbca970
+
+
 # Introduction - how to read this doc
 
 - This exercise is designed to test basic skills in 3 core areas:
@@ -129,8 +133,34 @@ docker-compose -f docker-compose.initial.yml up --build -d
 
 ### solution
 
-> explain briefly your solution for this problem here
+> Problem
+>The initial database structure was not normalized, with all data stored in a single home_db.user_home table.
 
+## Solution
+- Created two main tables: user and home
+- Established a many-to-many relationship using a junction  table home_users
+- Used foreign key constraints to maintain data integrity
+
+>The 99_final_db_dump.sql script in the sql/ directory contains all the necessary SQL statements to set up this structure and migrate the existing data.
+
+### Clone the repository
+```
+ git clone https://github.com/bisht-xp/full_stack_assessment_skeleton.git
+```
+
+### Go to the project directory
+
+```bash
+  cd full_stack_assessment_skeleton
+```
+#### Start the MySQL database
+```
+docker-compose -f docker-compose.initial.yml up --build -d
+```
+### Set up the database schema:
+```
+mysql -h localhost -P 3306 -u db_user -p < sql/99_final_db_dump.sql
+```
 ## 2. React SPA
 
 - this is a simple SPA, the idea is to show case your state management and some frontend-dev skills
@@ -220,7 +250,43 @@ docker-compose -f docker-compose.initial.yml up --build -d
 
 ### solution
 
-> explain briefly your solution for this problem here
+> Problem
+>Create a single-page application to display and edit user-home relationships.
+
+## Solution
+
+### First Setup project
+
+### Clone the repository
+```
+ git clone https://github.com/bisht-xp/full_stack_assessment_skeleton.git
+```
+
+### Go to the project directory
+
+```bash
+  cd full_stack_assessment_skeleton/frontend
+```
+Install dependencies
+
+```bash
+  yarn install
+```
+
+Start the server
+
+```bash
+  yarn dev
+```
+
+### Solution
+
+- Used Vite for project setup
+- Implemented with React and Redux Toolkit for state management
+- Styled with Tailwind CSS
+
+> Didn't use the data fetching library, instead using the axios and added error, loading handling.
+
 
 ## 3. Backend API development on Node
 
@@ -281,7 +347,47 @@ docker-compose -f docker-compose.initial.yml up --build -d
 
 ### solution
 
-> explain briefly your solution for this problem here
+> Problem
+>Create REST APIs for the web app to interact with the database.
+
+### First Setup project
+
+### Clone the repository
+```
+ git clone https://github.com/bisht-xp/full_stack_assessment_skeleton.git
+```
+
+### Go to the project directory
+
+```bash
+  cd full_stack_assessment_skeleton/backend
+```
+Install dependencies
+
+```bash
+  yarn install
+```
+
+Start the server
+
+```bash
+  yarn run start:dev
+```
+
+
+### Solution
+
+- Used NestJS as the backend framework
+- Implemented TypeORM for database interactions
+
+### APIs created:
+
+```
+GET /user/find-all: Returns all users from the database
+GET /home/find-by-user: Returns all homes related to a user
+GET /user/find-by-home: Returns all users related to a home
+PUT /home/update-users: Updates the users associated with a home
+```
 
 ## Submission Guidelines
 
