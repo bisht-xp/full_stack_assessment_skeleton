@@ -370,6 +370,16 @@ Install dependencies
   yarn install
 ```
 
+Spin docker image
+```bash
+docker-compose -f docker-compose.initial.yml up --build -d
+```
+
+Add database url in schema.prisma file directly or create .env file
+```
+DATABASE_URL="mysql://db_user:<password>@localhost:3306/home_db"
+```
+
 Start the server
 
 ```bash
